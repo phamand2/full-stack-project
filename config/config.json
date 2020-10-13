@@ -1,0 +1,12 @@
+{
+  "development": {
+    "database": "full_stack",
+    "host": "127.0.0.1",
+    "dialect": "postgres"
+  },
+  "production": {
+    "database": "full_stack",
+    "host": "127.0.0.1",
+    "dialect": "postgres"
+  }
+}
