@@ -3,11 +3,19 @@ const router = express.Router();
 const bcrypt = require('bcrypt');
 const passport = require('passport');
 // Load User model
-const User = require('../models/User');
+const db = require('../models');
 const { forwardAuthenticated } = require('../config/auth');
 
 // Login Page
-router.get('/login', forwardAuthenticated, (req, res) => res.render('login'));
+router.get('/login', forwardAuthenticated, (req, res) => res.render('login',{
+  locals: {
+    title: 'Login'
+  },
+  partials: {
+    head: '/partials/head',
+    foot: '/partials/foot',
+  }
+}));
 
 // Register Page
 router.get('/register', forwardAuthenticated, (req, res) => res.render('register', {
@@ -28,7 +36,7 @@ router.post('/register', (req, res) => {
   if (!name || !email || !password || !password2) {
     res.render('register', {
       locals: {
-        error: 'Please submit all required fields'
+        // error: 'Please submit all required fields'
       }
     })
   }
@@ -36,7 +44,7 @@ router.post('/register', (req, res) => {
   if (password != password2) {
     res.render('register', {
       locals: {
-        error: 'Password does not match'
+        // error: 'Password does not match'
       }
     })
   }
@@ -44,16 +52,16 @@ router.post('/register', (req, res) => {
   if (password.length < 6) {
     res.render('register', {
       locals: {
-        error: 'Password length is less than 6 characters'
+        // error: 'Password length is less than 6 characters'
       }
     })
     return
   }
   bcrypt.hash(password, 10, (err, hash) => {
-    // User.create({
-    //   name,
-    //   email,
-    //   password: hash
+    db.User.create({
+      name,
+      email,
+      password: hash
     })
     .then((result) => {
       req.flash(
@@ -64,7 +72,7 @@ router.post('/register', (req, res) => {
     })
     .catch(err => console.log(err));
   });
-// });
+});
 
 
         
