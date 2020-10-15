@@ -7,7 +7,7 @@ const db = require('../models');
 const { forwardAuthenticated } = require('../config/auth');
 
 // Login Page
-router.get('/login', forwardAuthenticated, (req, res) => res.render('login',{
+router.get('/login', forwardAuthenticated, (req, res) => res.render('login', {
   locals: {
     title: 'Login'
   },
@@ -31,7 +31,7 @@ router.get('/register', forwardAuthenticated, (req, res) => res.render('register
 // Register
 router.post('/register', (req, res) => {
   const { name, email, password, password2 } = req.body;
-  
+
 
   if (!name || !email || !password || !password2) {
     res.render('register', {
@@ -63,21 +63,18 @@ router.post('/register', (req, res) => {
       email,
       password: hash
     })
-    .then((result) => {
-      req.flash(
-        'success_msg',
-        'You are now registered and can log in'
-      );
-      res.redirect('/users/login');
-    })
-    .catch(err => console.log(err));
+      .then((result) => {
+        req.flash(
+          'success_msg',
+          'You are now registered and can log in'
+        );
+        res.redirect('/users/login');
+      })
+      .catch(err => console.log(err));
   });
 });
 
 
-        
-
-  
 
 // Login
 router.post('/login', (req, res, next) => {

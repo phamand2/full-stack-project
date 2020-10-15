@@ -43,7 +43,7 @@ module.exports = {
           model: 'Users',
           key: 'id'
         }
-      }
+      }     
     });
   },
   down: async (queryInterface, Sequelize) => {
