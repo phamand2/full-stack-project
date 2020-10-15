@@ -31,6 +31,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 // Passport middleware
 app.use(passport.initialize());
 app.use(passport.session());
+require('./config/passport')(passport)
 
 // Connect flash
 app.use(flash())
