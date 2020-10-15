@@ -3,6 +3,7 @@
 
 <head>
   ${head}
+  <link href="data:image/x-icon;base64,AAABAAEAEBAAAAAAAABoAwAAFgAAACgAAAAQAAAAIAAAAAEAGAAAAAAAAAMAAAAAAAAAAAAAAAAAAAAAAAD/ybj/49Twyqbwyqb/1I7/xmv/xmv/49T/49T/5dT/tpX/xmt4eHiioqL34dX13baqqqqkoKDwyqb/xmv/xmv/49T/8NT/49T/xmv/uEj/uEj/uEj/q44xAJb/xmv/xmukoKD/q45ubm5ubm7//9T/8NT/49T/8NT/8NT/////1I7/uEj/uEg+Pj7/uEj/uEjw+//////y8vKqqqoZAFAODg4ODg4AAAD/xmv/uEj/uEj/uEj/uEgmJib/uEj/uEj/////8NTy8vL////y8vL/4rGAgIAODg5iYmL/xmv/uEj/uEj/uEg+Pj5iYmL/uEjwyqb////////////////////y8vIODg4AAACSkpL/xmv/xmv/xmvU/44yMjL/j2v/1I7wyqb///////////////////96enoAAAAODg4aGhoAAAAODg4aGhpKSkqkoKD/1I7wyqb///////////////////////8ODg4AAAAAAAAAAAAAAAB+fn7/w2P/uEj08evy8vLy8vL////////////09PSbnZ4MMLkCAkILCwtpaWne3t7wyqb/0Yb/xmvw+///8NT///////////////8yMjJWVlYlAHMxAJZISP/m5uZubm7/4rHwyqbwyqby8vL/4rH/xmv///////////8AAAD///+Ojv8ODg5ISP9ISP8ODg6koKDwyqbwyqby8vL/1I7/1I7y8vLy8vL/8NQODg7///+SkpIlAHMAMZZISP8lJf8AGVD/1I7/xmv/8NT/4rH/1I7/4rH/////49QaGhomJiYlAHMAAAAAAJZIc/9rj/8AAFD/xmv/xmv/4rH/4rH/xmv/uEj/////////4rElAHMlAHMlAHMASdxISP//49T/4rHwyqb/xmv///////////////////////////////////////8aGhoAAABiYmLwyqb/1I7/xmv///////////////////////////////////////8AAAAjIyP/8NTwyqb/xmv/xmt/8QAAP/MAAA/7AADw+wAA/HkAAP49AAD/AQAA/wMAAP4PAAD8HwAA/AMAAPwDAAD8AwAA/g8AAP/HAAD/zwAA" rel="icon" type="image/x-icon" />
 </head>
 
 <body>
@@ -11,10 +12,19 @@
   <!-- THIS MARKS THE BEGINNING OF KATE'S CODE INSERTION -->
 
   <!-- theoretically creates carousel of 'team sports' photos -->
+  <style type="text/css"> 
+    #carousel{
+      display:flex !important;
+      flex-direction: column !important;
+      justify-content: center !important;
+      border-radius: 25px;
+      border: 12px solid #F6AA1C;
+      padding:2%;
+    }
+  </style>
   <div id="carouseldiv" class="d-flex justify-content-center">
     <div id="carousel" class="carousel slide" data-ride="carousel">
       <div class="carousel-inner">
-        <!-- CURRENT BUG: Changing div class to seems to have killed the carousel-item animations -->
         <div class="carousel-item active">
           <img placeholder="men playing baseball" height=300px src="/photos/pexels-pixabay-209933.jpg">
         </div>
@@ -22,8 +32,25 @@
           <img placeholder="women playing soccer/football" height=300px src="/photos/pexels-rfstudio-3886237.jpg">
         </div>
         <div class="carousel-item">
-          <img placeholder="Matt Mercer and bros playing DND" height=300px src="/photos/placeholder.jpg">
+          <img placeholder="Matt Mercer and bros playing DND" height="300px" src="/photos/placeholder.jpg">
         </div>
+        <div class="carousel-item">
+          <img placeholder="People play disc golf" height=300px src="/photos/disc-golf-league-1.jpg">
+        </div>
+        <div class="carousel-item">
+          <img placeholder="Even more disc golf" height=300px src="/photos/discgolf-for-beginners-guide-banner.jpg">
+        </div>
+        <div class="carousel-item">
+          <img placeholder="Live action roleplayers charge with period weaponry" height=300px src="/photos/pexels-rene-asmussen-2514316(1).jpg">
+        </div>
+        <a class="carousel-control-prev" href="#carousel" role="button" data-slide="prev">
+          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+          <span class="sr-only">Previous</span>
+        </a>
+        <a class="carousel-control-next" href="#carousel" role="button" data-slide="next">
+          <span class="carousel-control-next-icon" aria-hidden="true"></span>
+          <span class="sr-only">Next</span>
+        </a>
       </div>
     </div>
   </div>
@@ -36,16 +63,18 @@
         background-color: #BC3908 !important;
         color: white !important;
         font-family: Geneva !important;
+        background-image: radial-gradient(#220901 0%, #941B0C 40%, #BC3908 80%);
       }
-
-      h1 #title{
+      #mainTitle{
         color: #F6AA1C !important;
         font-family:Impact !important;
+        text-align: center;
       }
+      
     </style>
-    <h1 id="title">The Current Name of Our Website is Website</h1>
-    <p>This is a website about teams. Making them, running them, etc.</p>
-    <p>We allow you to track your players and leave performance notes.</p>
+    <h1 id="mainTitle">Team-Me</h1>
+    <p style="text-align: center;">This is a website about teams. Making them, running them, etc.</p>
+    <p style="text-align: center;">We allow you to track your players and leave performance notes.</p>
 
   </div>
 
@@ -56,6 +85,7 @@
       }
       .card{
         background-color:#F6AA1C !important;
+        border: 3px solid white !important;
       }
       .btn-primary{
         background-color: #BC3908 !important;
@@ -86,7 +116,8 @@
 
 
   <!-- THIS MARKS THE ENDING OF KATE'S CODE INSERTION -->
-  <div class='container'>
+  <!-- ANDREW'S DEPRECATED PAGE CODE -->
+  <!-- <div class='container'>
     <div class="row mt-5">
       <div class="col-md-6 m-auto">
         <div class="card card-body text-center">
@@ -97,7 +128,7 @@
         </div>
       </div>
     </div>
-  </div>
+  </div> -->
   ${foot}
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
     integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">

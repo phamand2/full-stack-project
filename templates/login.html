@@ -4,11 +4,30 @@
   ${head}
 </head>
 <body>
+  <!-- MARKS THE BEGINNING OF KATE'S CODE -->
+  <style type="text/css">
+  body {
+    background-image: linear-gradient(#220901, #F6AA1C)
+  }
+  #loginbox {
+    background-color: #BC3908;
+    border: 2px solid #220901;
+  }
+  label{
+    color: white;
+  }
+  .btn-primary{
+        background-color: #BC3908 !important;
+        border-color: rgb(255, 255, 255) !important;
+        background-image: linear-gradient(#F6AA1C, #D97212 50%, #CB560D);
+  }
+  </style>
+  <!-- MARKS THE END OF KATE'S CODE -->
   <div class="container">
     <div class="row mt-5">
       <div class="col-md-6 m-auto">
-        <div class="card card-body">
-          <h1 class="text-center mb-3"><i class="fas fa-sign-in-alt"></i>Login</h1>
+        <div class="card card-body" id="loginbox">
+          <h1 class="text-center mb-3" style="color: white;"><i class="fas fa-sign-in-alt"></i>Login</h1>
           <form action="/users/login" method="POST">
             <div class="form-group">
               <label for="email">Email</label>
@@ -32,7 +51,7 @@
             </div>
             <button type="submit" class="btn btn-primary btn-block">Login</button>
           </form>
-          <p class="lead mt-4">
+          <p class="lead mt-4" style="color: white;">
             No Account? <a href="/users/register">Register</a>
           </p>
         </div>
