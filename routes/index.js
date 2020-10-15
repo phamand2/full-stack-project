@@ -1,9 +1,13 @@
 const express = require('express');
+const db = require('../models');
+const {
+  ensureAuthenticated,
+  forwardAuthenticated
+} = require('../config/auth');
 const router = express.Router();
-const { ensureAuthenticated, forwardAuthenticated } = require('../config/auth');
 
 // Welcome Page
-router.get('/', forwardAuthenticated, (req, res) => res.render('welcome',{
+router.get('/', forwardAuthenticated, (req, res) => res.render('welcome', {
   locals: {
     title: 'Welcome'
   },
@@ -14,10 +18,21 @@ router.get('/', forwardAuthenticated, (req, res) => res.render('welcome',{
 }));
 
 // Dashboard
-router.get('/dashboard', ensureAuthenticated, (req, res) =>
+router.get('/dashboard', ensureAuthenticated, (req, res) => {
+
+  // db.User.findOne({
+  //   where: {
+  //     name: db.User.name
+  //   }
+  // }).then(name => {
   res.render('dashboard', {
-    user: req.user
+    locals: {
+      user: req.user
+    }
   })
-);
+  // .catch(err => {
+  //   console.log(err)
+  // });
+})
 
 module.exports = router;

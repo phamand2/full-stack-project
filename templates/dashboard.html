@@ -6,17 +6,16 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.3/css/bootstrap.min.css"
-        integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
-    <link rel="stylesheet" href="../styles/dashboard.css">
+    <link rel="stylesheet" href="styles">
+
 </head>
 
-<body class="">
+<body style="background-color: #BC3908; color: antiquewhite;">
 
-    <main role="main" class="container">
-        <h1>Hello ${name}!</h1>
-        <h2 id="roles">Your roles:</h2><button class="btn btn-success" type="button" data-toggle="collapse"
-            data-target="#newRole" aria-expanded="false" aria-controls="newRole">
+    <main role="main" class="container" style="background-color: #BC3908;">
+        <h1>Hello ${user.name}!</h1>
+        <h2 id="roles">Your roles:</h2><button class="btn" style="background-color: #F6AA1C;" type="button"
+            data-toggle="collapse" data-target="#newRole" aria-expanded="false" aria-controls="newRole">
             +add new role
         </button>
         <div class="collapse" id="newRole">
@@ -33,17 +32,18 @@
             </div>
         </div>
         <h2 id="teams">Your teams:</h2>
-        <h3>Mighty Ducks</h3><button class="btn btn-success" type="button" data-toggle="collapse"
+        <h3>Mighty Ducks</h3><button class="btn" style="background-color: #F6AA1C;" type="button" data-toggle="collapse"
             data-target="#teamData" aria-expanded="false" aria-controls="teamData">show</button>
         <div class="collapse" id="teamData">
             <div class="card card-body bac">
                 <p>Player One</p>
-                <button id='add-player-to-' class="btn btn-success">+ add player</button>
+                <button id='add-player-to-' style="background-color: #F6AA1C;" class="btn">+ add player</button>
             </div>
         </div>
-        </div><button class="btn btn-success" type="button" href=>
+        </div><button class="btn" style="background-color: #F6AA1C;" type="button" href=>
             +create new team
         </button>
+        <a href="/users/logout" class="btn btn-secondary">Logout</a>
     </main>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
     <script src="https://code.jquery.com/jquery-3.5.1.js"
@@ -52,4 +52,3 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 
 </body>
-
