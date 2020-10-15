@@ -4,6 +4,13 @@
     "host": "127.0.0.1",
     "dialect": "postgres"
   },
+  "withpassword":{
+    "database":"full_stack",
+    "host":"127.0.0.1",
+    "dialect":"postgres",
+    "username": "katherine",
+    "password": "katherine"
+  },
   "production": {
     "database": "full_stack",
     "host": "127.0.0.1",
