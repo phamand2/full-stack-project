@@ -7,6 +7,7 @@
     "dev": "nodemon app.js",
     "db:reset": "sequelize db:drop; sequelize db:create && sequelize db:migrate && sequelize db:seed:all",
     "start": "node app.js",
+    "dev:kate": "NODE_ENV=withpassword nodemon app.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -24,6 +25,7 @@
     "bcrypt": "^5.0.0",
     "body-parser": "^1.19.0",
     "connect-flash": "^0.1.1",
+    "connect-session": "0.0.1",
     "connect-session-sequelize": "^7.0.3",
     "cookie-parser": "^1.4.5",
     "express": "^4.17.1",
@@ -33,7 +35,8 @@
     "passport": "^0.4.1",
     "passport-local": "^1.0.0",
     "pg": "^8.4.1",
-    "sequelize": "^6.3.5"
+    "sequelize": "^6.3.5",
+    "tiny": "0.0.10"
   },
   "devDependencies": {
     "nodemon": "^2.0.5",

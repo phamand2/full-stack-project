@@ -6,6 +6,86 @@
 </head>
 
 <body>
+  <div class="title"></div>
+
+  <!-- THIS MARKS THE BEGINNING OF KATE'S CODE INSERTION -->
+
+  <!-- theoretically creates carousel of 'team sports' photos -->
+  <div id="carouseldiv" class="d-flex justify-content-center">
+    <div id="carousel" class="carousel slide" data-ride="carousel">
+      <div class="carousel-inner">
+        <!-- CURRENT BUG: Changing div class to seems to have killed the carousel-item animations -->
+        <div class="carousel-item active">
+          <img placeholder="men playing baseball" height=300px src="/photos/pexels-pixabay-209933.jpg">
+        </div>
+        <div class="carousel-item">
+          <img placeholder="women playing soccer/football" height=300px src="/photos/pexels-rfstudio-3886237.jpg">
+        </div>
+        <div class="carousel-item">
+          <img placeholder="Matt Mercer and bros playing DND" height=300px src="/photos/placeholder.jpg">
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- title of the website and relevant links below -->
+  <div id="webtitle" class="justify-content-center">
+
+    <style type="text/css">
+      body {
+        background-color: #BC3908 !important;
+        color: white !important;
+        font-family: Geneva !important;
+      }
+
+      h1 #title{
+        color: #F6AA1C !important;
+        font-family:Impact !important;
+      }
+    </style>
+    <h1 id="title">The Current Name of Our Website is Website</h1>
+    <p>This is a website about teams. Making them, running them, etc.</p>
+    <p>We allow you to track your players and leave performance notes.</p>
+
+  </div>
+
+  <div class='container' id="here">
+    <style type="text/css">
+      body #here {
+        color: #941B0C !important;
+      }
+      .card{
+        background-color:#F6AA1C !important;
+      }
+      .btn-primary{
+        background-color: #BC3908 !important;
+        border-color: rgb(255, 255, 255) !important;
+        background-image: linear-gradient(#BC3908, #A82A0A 50%, #941B0C);
+      }
+      .btn-secondary{
+        background-color: #BC3908 !important;
+        border-color: rgb(255, 255, 255) !important;
+        background-image: linear-gradient(#941B0C, #7B190A 50%, #621708);
+      }
+    </style>
+    <div class="col col-md-6 m-auto">
+      <div class="card card-body text-center">
+
+        <p>Log in or Sign Up!</p>
+
+
+        <h1><i class="fas fa-user-plus" height=150px></i></h1>
+        <a href="users/register" class="btn btn-primary btn-block mb-2">Register</a>
+
+        <h1><i class="fas fa-sign-in-alt"></i></h1>
+        <a href="/users/login" class="btn btn-secondary btn-block mb-2">Log In</a>
+
+      </div>
+    </div>
+  </div>
+
+
+  <!-- THIS MARKS THE ENDING OF KATE'S CODE INSERTION -->
   <div class='container'>
     <div class="row mt-5">
       <div class="col-md-6 m-auto">
@@ -17,10 +97,19 @@
         </div>
       </div>
     </div>
-
   </div>
-
   ${foot}
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+    integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
+    integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
+    crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+    integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+    crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
+    integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
+    crossorigin="anonymous"></script>
 </body>
 
 </html>
