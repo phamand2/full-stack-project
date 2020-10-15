@@ -19,20 +19,53 @@ router.get('/', forwardAuthenticated, (req, res) => res.render('welcome', {
 
 // Dashboard
 router.get('/dashboard', ensureAuthenticated, (req, res) => {
-
-  // db.User.findOne({
-  //   where: {
-  //     name: db.User.name
-  //   }
-  // }).then(name => {
   res.render('dashboard', {
     locals: {
       user: req.user
     }
   })
-  // .catch(err => {
-  //   console.log(err)
-  // });
+})
+
+// Post player details to database
+router.post('/role', (req, res) => {
+  if (!req.body || !req.body.name || !req.body.role || !req.body.email || !req.body.phone) {
+    res.status(400).json({
+      error: 'Provide todo text',
+    });
+    return;
+  }
+
+  db.Player.create({
+    name: req.body.name,
+    role: req.body.role,
+    email: req.body.email,
+    phone: req.body.phone,
+    ownerNotes: '',
+    playerNotes: '',
+    UserId: req.user.id
+  })
+    .then((newPlayer) => {
+      res.redirect('/dashboard');
+    })
+    .catch((error) => {
+      console.error(error)
+      res.status(500).json({error})
+    })
+});
+
+router.get('/dashboard', (req,res)=>{
+  db.Player.findAll()
+  .then((players)=>{
+    res.render('dashboard', {
+      locals: {
+        players: players
+      }
+    })
+  })
+  .catch((error) =>{
+    console.log(error)
+  })
+  
 })
 
 module.exports = router;

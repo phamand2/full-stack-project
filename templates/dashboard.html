@@ -18,19 +18,28 @@
             data-toggle="collapse" data-target="#newRole" aria-expanded="false" aria-controls="newRole">
             +add new role
         </button>
-        <div class="collapse" id="newRole">
-            <div class="card card-body bac">
-                <label for="role">Role:</label>
-                <input type="text" id="role" name="role"><br>
-                <label for="name">Your name:</label>
-                <input type="text" id="name" name="name"><br>
-                <label for="email">Your email:</label>
-                <input type="email" id="email" name="email"><br>
-                <label for="phone">Your phone number:</label>
-                <input type="tel" id="phone" name="phone"><br>
-                <input type="submit" value="Submit">
+        <ul>
+            ${players.map(player => {
+            return `<li>player.role</li>`
+            })}
+        </ul>
+        <form action="/role" method="POST">
+
+            <div class="collapse" id="newRole">
+                <div class="card card-body bac">
+                    <label for="role">Role:</label>
+                    <input style="color: black" type="text" id="role" name="role"><br>
+                    <label for="name">Your name:</label>
+                    <input style="color: black" type="text" id="name" name="name"><br>
+                    <label for="email">Your email:</label>
+                    <input style="color: black" type="email" id="email" name="email"><br>
+                    <label for="phone">Your phone number:</label>
+                    <input style="color: black" type="tel" id="phone" name="phone"><br>
+                    <input style="background-color: #F6AA1C" type="submit" value="Submit">
+                </div>
             </div>
-        </div>
+
+        </form>
         <h2 id="teams">Your teams:</h2>
         <h3>Mighty Ducks</h3><button class="btn" style="background-color: #F6AA1C;" type="button" data-toggle="collapse"
             data-target="#teamData" aria-expanded="false" aria-controls="teamData">show</button>
