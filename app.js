@@ -9,11 +9,13 @@ const logger = morgan('tiny')
 const session = require('express-session')
 const cookieParser = require('cookie-parser')
 const SequelizeStore = require('connect-session-sequelize')(session.Store);
-const store = new SequelizeStore({ db: db.sequelize })
+const store = new SequelizeStore({
+  db: db.sequelize
+})
 const passport = require('passport')
 const flash = require('connect-flash')
 
-app.use(cookieParser()); 
+app.use(cookieParser());
 
 app.use(
   session({
@@ -22,11 +24,13 @@ app.use(
     saveUninitialized: true, // always create a session
     store: store,
   })
-  );
-  store.sync()
+);
+store.sync()
 
 app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.urlencoded({
+  extended: false
+}));
 
 // Passport middleware
 app.use(passport.initialize());
@@ -37,7 +41,7 @@ require('./config/passport')(passport)
 app.use(flash())
 
 // Global variables
-app.use(function(req, res, next) {
+app.use(function (req, res, next) {
   res.locals.success_msg = req.flash('success_msg');
   res.locals.error_msg = req.flash('error_msg');
   res.locals.error = req.flash('error');
