@@ -55,6 +55,8 @@ router.post('/role', (req, res) => {
     })
 });
 
+
+// Display roles to dashboard
 router.get('/roles', (req, res) => {
   db.Player.findAll({
       where: {
@@ -70,5 +72,26 @@ router.get('/roles', (req, res) => {
     })
 
 })
+
+// Delete roles
+router.delete('/roles/:id', (req, res) => {
+  const {id} = req.params
+  db.Player.destroy({
+    where: {
+      id: req.params.id,
+      UserId: req.user.id
+    }
+  })
+  .then((deleted) => {
+    if (deleted === 0) {
+      res.status(404).json({error: `Could not find Player with id: ${id}`})
+    }
+    res.status(204).json()
+  })
+  .catch((error)=>{
+    console.log(error)
+    res.status(500).json({error: "A database error occurred"})
+  })
+});
 
 module.exports = router;

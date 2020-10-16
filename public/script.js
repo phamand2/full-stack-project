@@ -13,6 +13,7 @@ function getRoleHtml(roleData) {
         <p>Name: ${roleData.name}</p>
         <p>Email: ${roleData.email}</p>
         <p>Phone: ${roleData.phone}</p>
+        <button class="todo-button delete js-delete-button" data-id="${roleData.id}" type="button">X</button>
         </div>
         </li>
         `;
@@ -98,19 +99,19 @@ function renderRoles() {
 //  * Delete a role with the given ID and update the roles on the page. Displays an alert if there is an error in the request.
 //  * @param {integer} id the id of the role item that should be deleted
 //  */
-// function deleterole(id) {
-//   axios
-//     .delete(`/roles/${id}`)
-//     .then((response) => {
-//       renderroles()
-//     })
-//     .catch((error) => {
+function deleterole(id) {
+  axios
+    .delete(`/roles/${id}`)
+    .then((response) => {
+      renderRoles()
+    })
+    .catch((error) => {
 
-//       const errorText = error.response.data.error || error;
+      const errorText = error.response.data.error || error;
 
-//       alert('could not add role:' + errorText);
-//     });
-// }
+      alert('could not add role:' + errorText);
+    });
+}
 
 // /**
 //  * Update the role with the given ID. Text will be updated based on the input matching the id. Displays an alert if there is an error in the request.
@@ -140,16 +141,16 @@ function renderRoles() {
 //   addRole(text);
 //   addForm.reset();
 // });
-// document.addEventListener('click', (e) => {
-//   if (e.target.classList.contains('js-delete-button')) {
-//     const id = e.target.dataset.id;
-//     deleterole(id);
-//   }
+document.addEventListener('click', (e) => {
+  if (e.target.classList.contains('js-delete-button')) {
+    const id = e.target.dataset.id;
+    deleterole(id);
+  }
 
 //   if (e.target.classList.contains('check-button')) {
 //     const id = e.target.dataset.id;
 //     checkRole(id);
 //   }
-// });
+});
 console.log("I'm here.")
 renderRoles();
