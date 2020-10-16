@@ -20,6 +20,12 @@
         background-color: #BC3908 !important;
         border-color: rgb(255, 255, 255) !important;
         background-image: linear-gradient(#F6AA1C, #D97212 50%, #CB560D);
+        transition: 2s !important;
+
+  }
+  .btn-primary:hover {
+      opacity: 12 !important;
+      background-image: linear-gradient(#CB560D,#D97212 50%, #F6AA1C) !important;
   }
   </style>
   <!-- MARKS THE END OF KATE'S CODE -->
@@ -27,7 +33,7 @@
     <div class="row mt-5">
       <div class="col-md-6 m-auto">
         <div class="card card-body" id="loginbox">
-          <h1 class="text-center mb-3" style="color: white;"><i class="fas fa-sign-in-alt"></i>Login</h1>
+          <h1 class="text-center mb-3" style="color: white; font-family: Impact;"><i class="fas fa-sign-in-alt"></i>  Login</h1>
           <form action="/users/login" method="POST">
             <div class="form-group">
               <label for="email">Email</label>
