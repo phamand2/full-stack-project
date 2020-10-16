@@ -39,18 +39,32 @@
 
         </form>
         <h2 id="teams">Your teams:</h2>
-        <h3>Mighty Ducks</h3><button class="btn" style="background-color: #F6AA1C;" type="button" data-toggle="collapse"
-            data-target="#teamData" aria-expanded="false" aria-controls="teamData">show</button>
+        <ul id="teams-go-here" class="teams-go-here">
+
+        </ul>
+        <button class="btn" style="background-color: #F6AA1C;" type="button" data-toggle="collapse"
+            data-target="#newTeam" aria-expanded="false" aria-controls="newTeam">
+            +create new team
+        </button>
         <div class="collapse" id="teamData">
             <div class="card card-body bac">
                 <p>Player One</p>
                 <button id='add-player-to-' style="background-color: #F6AA1C;" class="btn">+ add player</button>
             </div>
         </div>
-        </div><button class="btn" style="background-color: #F6AA1C;" type="button" href=>
-            +create new team
-        </button>
-        <a href="/users/logout" class="btn btn-secondary">Logout</a>
+        </div>
+
+        <form action="/team" method="POST">
+
+            <div class="collapse" id="newTeam">
+                <div class="card card-body bac">
+                    <label for="teamName">Team Name:</label>
+                    <input style="color: black" type="text" id="teamName" name="teamName"><br>
+                    <input style="background-color: #F6AA1C" type="submit" value="Submit">
+                </div>
+            </div>
+
+            <a href="/users/logout" class="btn btn-secondary">Logout</a>
     </main>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
