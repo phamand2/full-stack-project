@@ -23,25 +23,44 @@ function getRoleHtml(roleData) {
   return html;
 }
 
+function getTeamHtml(teamData) {
+  const html = `
+      <li class="team-item js-team-item" data-id="${teamData.id}">
+        <div class="role-form">
+      
+        <h3>${teamData.teamName}</h3><button class=“btn” style=“background-color: #F6AA1C;” type=“button” data-toggle=“collapse”
+        data-target=“#teamData” aria-expanded=“false” aria-controls=“teamData”>show teammembers</button>
+    <div class=“collapse” id=“teamData”>
+        <div class=“card card-body bac”>
+            <p>Player1</p>
+            <button id=‘add-player-to-${teamData.id}’ style=“background-color: #F6AA1C;” class=“btn”>+ add player</button>
+        </div>
+    </div>
+        `;
+  // <button class="role-button delete js-delete-button" data-id="${roleData.id}" type="button">X</button>
+  // <input class="check-button" type="checkbox" ${roleData.complete ? 'checked': ''} data-id="${roleData.id}">
 
-function checkRole(id) {
-
-
-  axios
-    .patch(`/api/roles/${id}/check`)
-
-    .then((response) => {
-
-      renderRoles()
-    })
-
-    .catch((error) => {
-
-      const errorText = error.response.data.error || error;
-
-      alert('could not update role:' + errorText);
-    });
+  return html;
 }
+
+// function checkRole(id) {
+
+
+//   axios
+//     .patch(`/api/roles/${id}/check`)
+
+//     .then((response) => {
+
+//       renderRoles()
+//     })
+
+//     .catch((error) => {
+
+//       const errorText = error.response.data.error || error;
+
+//       alert('could not update role:' + errorText);
+//     });
+// }
 
 /**
  * Get the role Data from the API and export. Displays an alert if there is an error.
@@ -49,26 +68,34 @@ function checkRole(id) {
 function renderRoles() {
   axios
     .get('/roles')
-
     .then((response) => {
-
       const htmlArray = response.data.map((roleItem) => {
-
         return getRoleHtml(roleItem);
       });
-
       const htmlString = htmlArray.join('');
-
       const roles = document.querySelector('.roles-go-here');
-
       roles.innerHTML = htmlString;
     })
-
     .catch((error) => {
       console.log(error);
     });
 }
 
+function renderTeams() {
+  axios
+    .get('/teams')
+    .then((response) => {
+      const htmlArray = response.data.map((teamItem) => {
+        return getTeamHtml(teamItem);
+      });
+      const htmlString = htmlArray.join('');
+      const teams = document.querySelector('.teams-go-here');
+      teams.innerHTML = htmlString;
+    })
+    .catch((error) => {
+      console.log(error);
+    });
+}
 // /**
 //  * Add a role via the API and then adds it to the page. Displays an alert if there is an error in the request.
 //  * @param {string} text The name of the role that you wish to create
@@ -147,10 +174,11 @@ document.addEventListener('click', (e) => {
     deleterole(id);
   }
 
-//   if (e.target.classList.contains('check-button')) {
-//     const id = e.target.dataset.id;
-//     checkRole(id);
-//   }
+  //   if (e.target.classList.contains('check-button')) {
+  //     const id = e.target.dataset.id;
+  //     checkRole(id);
+  //   }
 });
 console.log("I'm here.")
 renderRoles();
+renderTeams();

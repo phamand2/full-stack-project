@@ -12,25 +12,17 @@ module.exports = (sequelize, DataTypes) => {
     static associate(models) {
       // define association here
       Team.belongsTo(models.User)
-      Team.belongsToMany(models.Player,{
+      Team.belongsToMany(models.Player, {
         through: 'TeamPlayers'
       })
     }
   };
   Team.init({
-    name: {
+    teamName: {
       allowNull: false,
       type: DataTypes.STRING
     },
-    email: {
-      unique: true,
-      allowNull: false,
-      type: DataTypes.STRING
-    },
-    password: {
-      allowNull: false,
-      type: DataTypes.STRING
-    }
+
   }, {
     sequelize,
     modelName: 'Team',

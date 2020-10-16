@@ -55,6 +55,30 @@ router.post('/role', (req, res) => {
     })
 });
 
+router.post('/team', (req, res) => {
+  if (!req.body || !req.body.teamName) {
+    res.status(400).json({
+      error: 'Provide todo text',
+    });
+    return;
+  }
+
+  db.Team.create({
+      teamName: req.body.teamName,
+      ownerNotes: '',
+      playerNotes: '',
+      UserId: req.user.id
+    })
+    .then((newTeam) => {
+      res.redirect('/dashboard');
+    })
+    .catch((error) => {
+      console.error(error)
+      res.status(500).json({
+        error
+      })
+    })
+});
 
 // Display roles to dashboard
 router.get('/roles', (req, res) => {
@@ -73,25 +97,47 @@ router.get('/roles', (req, res) => {
 
 })
 
+router.get('/teams', (req, res) => {
+  db.Team.findAll({
+      where: {
+        UserId: req.user.id
+      }
+    })
+    .then((teams) => {
+      res.json(teams)
+
+    })
+    .catch((error) => {
+      console.log(error)
+    })
+
+})
+
 // Delete roles
 router.delete('/roles/:id', (req, res) => {
-  const {id} = req.params
+  const {
+    id
+  } = req.params
   db.Player.destroy({
-    where: {
-      id: req.params.id,
-      UserId: req.user.id
-    }
-  })
-  .then((deleted) => {
-    if (deleted === 0) {
-      res.status(404).json({error: `Could not find Player with id: ${id}`})
-    }
-    res.status(204).json()
-  })
-  .catch((error)=>{
-    console.log(error)
-    res.status(500).json({error: "A database error occurred"})
-  })
+      where: {
+        id: req.params.id,
+        UserId: req.user.id
+      }
+    })
+    .then((deleted) => {
+      if (deleted === 0) {
+        res.status(404).json({
+          error: `Could not find Player with id: ${id}`
+        })
+      }
+      res.status(204).json()
+    })
+    .catch((error) => {
+      console.log(error)
+      res.status(500).json({
+        error: "A database error occurred"
+      })
+    })
 });
 
 module.exports = router;
