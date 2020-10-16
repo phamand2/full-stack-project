@@ -36,36 +36,39 @@ router.post('/role', (req, res) => {
   }
 
   db.Player.create({
-    name: req.body.name,
-    role: req.body.role,
-    email: req.body.email,
-    phone: req.body.phone,
-    ownerNotes: '',
-    playerNotes: '',
-    UserId: req.user.id
-  })
+      name: req.body.name,
+      role: req.body.role,
+      email: req.body.email,
+      phone: req.body.phone,
+      ownerNotes: '',
+      playerNotes: '',
+      UserId: req.user.id
+    })
     .then((newPlayer) => {
       res.redirect('/dashboard');
     })
     .catch((error) => {
       console.error(error)
-      res.status(500).json({error})
+      res.status(500).json({
+        error
+      })
     })
 });
 
-router.get('/dashboard', (req,res)=>{
-  db.Player.findAll()
-  .then((players)=>{
-    res.render('dashboard', {
-      locals: {
-        players: players
+router.get('/roles', (req, res) => {
+  db.Player.findAll({
+      where: {
+        UserId: req.user.id
       }
     })
-  })
-  .catch((error) =>{
-    console.log(error)
-  })
-  
+    .then((players) => {
+      res.json(players)
+
+    })
+    .catch((error) => {
+      console.log(error)
+    })
+
 })
 
 module.exports = router;

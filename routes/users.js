@@ -4,7 +4,9 @@ const bcrypt = require('bcrypt');
 const passport = require('passport');
 // Load User model
 const db = require('../models');
-const { forwardAuthenticated } = require('../config/auth');
+const {
+  forwardAuthenticated
+} = require('../config/auth');
 
 // Login Page
 router.get('/login', forwardAuthenticated, (req, res) => res.render('login', {
@@ -30,7 +32,12 @@ router.get('/register', forwardAuthenticated, (req, res) => res.render('register
 
 // Register
 router.post('/register', (req, res) => {
-  const { name, email, password, password2 } = req.body;
+  const {
+    name,
+    email,
+    password,
+    password2
+  } = req.body;
 
 
   if (!name || !email || !password || !password2) {
@@ -59,10 +66,10 @@ router.post('/register', (req, res) => {
   }
   bcrypt.hash(password, 10, (err, hash) => {
     db.User.create({
-      name,
-      email,
-      password: hash
-    })
+        name,
+        email,
+        password: hash
+      })
       .then((result) => {
         req.flash(
           'success_msg',
@@ -91,5 +98,7 @@ router.get('/logout', (req, res) => {
   req.flash('success_msg', 'You are logged out');
   res.redirect('/users/login');
 });
+
+
 
 module.exports = router;
