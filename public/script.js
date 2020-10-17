@@ -25,19 +25,19 @@ function getRoleHtml(roleData) {
 
 function getTeamHtml(teamData) {
   const html = `
-      <li class="team-item js-team-item" data-id="${teamData.id}">
-        <div class="role-form">
+      <li class='team-item js-team-item' data-id='${teamData.id}'>
+        <div class='role-form'>
       
-        <h3>${teamData.teamName}</h3><button class=“btn” style=“background-color: #F6AA1C;” type=“button” data-toggle=“collapse”
-        data-target=“#teamData” aria-expanded=“false” aria-controls=“teamData”>show teammembers</button>
-    <div class=“collapse” id=“teamData”>
-        <div class=“card card-body bac”>
+        <h3>${teamData.teamName}</h3><button class='btn' style='background-color:#F6AA1C'; type='button' data-toggle='collapse'
+        data-target='#teamData-${teamData.id}' aria-expanded='false' aria-controls='teamData'>show teammembers</button>
+    <div class='collapse' id='teamData-${teamData.id}'>
+        <div class='card card-body bac'>
             <p>Player1</p>
-            <button id=‘add-player-to-${teamData.id}’ style=“background-color: #F6AA1C;” class=“btn”>+ add player</button>
+            <button id=‘add-player-to-${teamData.id}’ style='background-color: #F6AA1C'; class=“btn”>+ add player</button>
         </div>
     </div>
         `;
-  // <button class="role-button delete js-delete-button" data-id="${roleData.id}" type="button">X</button>
+  // <button class='role-button delete js-delete-button' data-id="${roleData.id}" type="button">X</button>
   // <input class="check-button" type="checkbox" ${roleData.complete ? 'checked': ''} data-id="${roleData.id}">
 
   return html;
