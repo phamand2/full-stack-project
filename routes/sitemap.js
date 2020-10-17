@@ -12,5 +12,14 @@ const {
 //forwardAuthenticated == not logged in
 //ensureAuthenticated == logged in 
 
-router.get('/sitemap', siteMapAuthenticated, (req, res) => res.render('sitemap-loggedin'));
-router.get('/sitemap',siteMapNonAuthenticated, (req, res) => res.render('sitemap-loggedout'))
+router.get('/sitemap', siteMapAuthenticated, (req, res) => {
+    res.render('sitemap-loggedin', {
+        partials: {
+            head: '/partials/head',
+            foot: '/partials/foot'
+        }
+    }) 
+})
+router.get('/sitemap',siteMapNonAuthenticated, (req, res) => {
+    res.render('sitemap-loggedout')
+})

@@ -5,13 +5,31 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sitemap for $user.name</title>
+    <title>Sitemap for ${user.name}</title>
 </head>
 <body>
-    <div id="sitemap" style="display: flex; justify-content: center; font-family: Impact; background-color: #A82A0A; color:white;">
-    <h1>Welcome, ${user.name}!</h1>
+    <style type="text/css">
+    #homebutton { 
+        height: 250px;
+        width: 250px;
+        border-radius: 25px;
+        text-align: center;
+        justify-content: center;
+        color: white;
+        font-family: 'Impact';
+        background-image: linear-gradient(#941b0c, #BC3908 50%, #D97212);
+    }
+    #homebutton:hover{
+        background-image:linear-gradient(#D97212, #BC3908 50%, #941B0c)
+    }
+    </style>
     
-    </div>
-</body>
+    <div id="sitemap" style="display: flex; justify-content: center; font-family: Impact; background-color: #A82A0A; color:white;">
+    <h1 style="color: #F6AA1C;">Welcome, ${user.name}!</h1>
+    <p style="color:#D97212">...but this isn't where I want to be...</p>
+    <a id="homebutton" href="/users/dashboard">DASHBOARD</a>
+        </div>
+
+    </body>
 <!-- if logged in, populate site map / all links 
 if not logged in, populate site map w / allowed links-->
