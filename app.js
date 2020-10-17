@@ -59,6 +59,8 @@ app.set('view engine', 'html');
 // Routes
 app.use('/', require('./routes/index.js'));
 app.use('/users', require('./routes/users.js'));
+//ADDED BY KATE, BROKEN
+app.use('/sitemap', require('./routes/sitemap.js'));
 
 
 const port = process.env.PORT || 3000;
