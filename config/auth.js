@@ -11,5 +11,20 @@ module.exports = {
       return next();
     }
     res.redirect('/dashboard');      
+  },
+  //EDITS BY KATE AND JAX START HERE
+  siteMapAuthenticated: function(req, res, next) {
+    if(req.isAuthenticated()) {
+      return next();
+    }
+    //if the user is authenticated, pass them the authenticated sitemap
+    res.redirect('/sitemap-loggedin')
+  },
+  siteMapNonAuthenticated: function(req, res, next) {
+    if(!req.isAuthenticated()){
+      return next();
+    }
+    //not an error because a sitemap page is accessible to non logged-in viewers
+    res.redirect('/sitemap-loggedout')
   }
 };
