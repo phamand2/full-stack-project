@@ -97,6 +97,37 @@ router.get('/roles', (req, res) => {
 
 })
 
+router.get('/team/:id/players', (req, res) => {
+  db.Team.findByPk(req.params.id, {
+      include: db.Player
+    }).then((team) => {
+      res.json(team.Players)
+    })
+    .catch((error) => {
+      console.log(error)
+    })
+})
+
+//for each playerId associated with a teamId
+//send it on through
+
+router.post('/teamplayers', (req, res) => {
+  db.Team.findByPk(req.query.teamId).then((team) => {
+      db.Player.findByPk(req.query.playerId).then((player) => {
+        team.addPlayer(player)
+      })
+    }).then((newPlayer) => {
+      console.log("I'm here!")
+      res.redirect('back')
+    })
+    .catch((error) => {
+      console.error(error)
+      res.status(500).json({
+        error
+      })
+    })
+})
+
 router.get('/players', (req, res) => {
   console.log(req.query.playerName)
   db.Player.findAll({
