@@ -19,9 +19,9 @@ function getRoleHtml(roleData) {
   return html;
 }
 
-function getPlayerHtml(playerData) {
+function getPlayerHtml(playerData, teamId) {
   const html = `
-  <li>Name: ${playerData.name}, Role: ${playerData.role}<button style='background-color:#F6AA1C' onclick='addPlayerToTeam(${playerData.id})'>+add me!</button></li>
+  <li>Name: ${playerData.name}, Role: ${playerData.role}<button style='background-color:#F6AA1C' onclick='addPlayerToTeam(${playerData.id}, ${teamId})'>+add me!</button></li>
   `
   return html
 }
@@ -31,11 +31,13 @@ function getTeamHtml(teamData) {
       <li class='team-item js-team-item' data-id='${teamData.id}'>
         <div class='role-form'>
       
-        <h3>${teamData.teamName}</h3><button class='btn' style='background-color:#F6AA1C'; type='button' data-toggle='collapse'
+        <h3>${teamData.teamName}</h3>
+        <button class='btn' style='background-color:#F6AA1C'; type='button' data-toggle='collapse'
         data-target='#teamData-${teamData.id}' aria-expanded='false' aria-controls='teamData'>show teammembers</button>
     <div class='collapse' id='teamData-${teamData.id}'>
         <div class='card card-body bac'>
-        <ul id="playerSearchResults-${teamData.id}"></ul>
+        <ul id="playerList-${teamData.id}"></ul>
+        <ul id="playerSearchResults-${teamData.id}" data-id="${teamData.id}"></ul>
         <label for="playerName-${teamData.id}">Add Player:</label>
         <input style="color: black" type="text" id="playerName-${teamData.id}" name="playerName-${teamData.id}"><br>
         <button style="background-color: #F6AA1C" onclick="searchPlayers(${teamData.id})">Search!</button>
@@ -54,7 +56,7 @@ function searchPlayers(teamId) {
   const uriPlayer = encodeURIComponent(player)
   axios.get(`/players?playerName=${uriPlayer}`).then((response) => {
       const htmlArray = response.data.map((playerItem) => {
-        return getPlayerHtml(playerItem);
+        return getPlayerHtml(playerItem, teamId);
       });
       const htmlString = htmlArray.join('');
       const players = document.querySelector(`#playerSearchResults-${teamId}`)
@@ -63,6 +65,17 @@ function searchPlayers(teamId) {
     .catch((error) => {
       console.log(error);
     });
+}
+
+function renderPlayers() {
+  axios.get('/playerlist')
+}
+
+function addPlayerToTeam(playerId, teamId) {
+  axios.post(`/teamplayers?playerId=${playerId}&teamId=${teamId}`)
+    .catch((error) => {
+      console.log(error);
+    })
 }
 
 function renderRoles() {
@@ -91,6 +104,7 @@ function renderTeams() {
       const htmlString = htmlArray.join('');
       const teams = document.querySelector('.teams-go-here');
       teams.innerHTML = htmlString;
+
     })
     .catch((error) => {
       console.log(error);
@@ -179,6 +193,5 @@ document.addEventListener('click', (e) => {
   //     checkRole(id);
   //   }
 });
-console.log("I'm here.")
 renderRoles();
 renderTeams();
