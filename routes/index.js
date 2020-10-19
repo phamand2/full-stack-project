@@ -116,8 +116,9 @@ router.post('/teamplayers', (req, res) => {
       db.Player.findByPk(req.query.playerId).then((player) => {
         team.addPlayer(player)
       })
-    }).then(() => {
-      res.redirect('/dashboard')
+    }).then((newPlayer) => {
+      console.log("I'm here!")
+      res.redirect('back')
     })
     .catch((error) => {
       console.error(error)

@@ -26,6 +26,11 @@ function getPlayerHtml(playerData, teamId) {
   return html
 }
 
+function getPlayerForTeamsHtml(playerData) {
+  const html = `<li>Name: ${playerData.name}, Role: ${playerData.role}</li>`
+  return html
+}
+
 function getTeamHtml(teamData) {
   const html = `
       <li class='team-item js-team-item' data-id='${teamData.id}'>
@@ -36,7 +41,7 @@ function getTeamHtml(teamData) {
         data-target='#teamData-${teamData.id}' aria-expanded='false' aria-controls='teamData'>show teammembers</button>
     <div class='collapse' id='teamData-${teamData.id}'>
         <div class='card card-body bac'>
-        <ul id="playerList-${teamData.id}"></ul>
+        <ul class="playerList" id="playerList-${teamData.id}" data-id="${teamData.id}">No players yet!</ul>
         <ul id="playerSearchResults-${teamData.id}" data-id="${teamData.id}"></ul>
         <label for="playerName-${teamData.id}">Add Player:</label>
         <input style="color: black" type="text" id="playerName-${teamData.id}" name="playerName-${teamData.id}"><br>
@@ -68,7 +73,21 @@ function searchPlayers(teamId) {
 }
 
 function renderPlayers() {
-  axios.get('/playerlist')
+  document.querySelectorAll(".playerList").forEach(element => {
+    axios.get(`/team/${element.getAttribute("data-id")}/players`).then((response) => {
+        const htmlArray = response.data.map((playerItem) => {
+          return getPlayerForTeamsHtml(playerItem);
+        });
+        const htmlString = htmlArray.join('');
+        // lol this looks straight stupid. the idea is that the weird value below is a number which represents an id tag. Let's see if it works!
+        const players = document.querySelector(`#playerList-${element.getAttribute("data-id")}`);
+        players.innerHTML = htmlString;
+
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  });
 }
 
 function addPlayerToTeam(playerId, teamId) {
@@ -104,7 +123,7 @@ function renderTeams() {
       const htmlString = htmlArray.join('');
       const teams = document.querySelector('.teams-go-here');
       teams.innerHTML = htmlString;
-
+      renderPlayers()
     })
     .catch((error) => {
       console.log(error);
