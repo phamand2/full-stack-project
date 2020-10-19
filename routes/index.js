@@ -97,6 +97,26 @@ router.get('/roles', (req, res) => {
 
 })
 
+router.get('/players', (req, res) => {
+  console.log(req.query.playerName)
+  db.Player.findAll({
+      where: {
+        name: {
+          [db.Sequelize.Op.iLike]: req.query.playerName
+        }
+      }
+    })
+    .then((players) => {
+      res.json(players)
+
+    })
+    .catch((error) => {
+      console.log(error)
+    })
+
+})
+
+
 router.get('/teams', (req, res) => {
   db.Team.findAll({
       where: {

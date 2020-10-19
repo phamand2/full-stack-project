@@ -1,5 +1,4 @@
 /* Start Function Definitions */
-
 /**
  * Gets the HTML for a single role List Item and returns it
  * @param {object} roleData Object of role data. Expects the object to have an `id` property and a `role` property
@@ -7,13 +6,10 @@
  */
 function getRoleHtml(roleData) {
   const html = `
-      <li class="role-item js-role-item" data-id="${roleData.id}">
-        <div class="role-form">
-        <p>Role: ${roleData.role}</p>
-        <p>Name: ${roleData.name}</p>
-        <p>Email: ${roleData.email}</p>
-        <p>Phone: ${roleData.phone}</p>
-        <button class="todo-button delete js-delete-button" data-id="${roleData.id}" type="button">X</button>
+      <li class="role-item js-role-item d-flex justify-content-center" data-id="${roleData.id}">
+        <div class="role-form d-flex justify-content-center">
+        <p>Role: ${roleData.role}, Name: ${roleData.name}, Email: ${roleData.email}, Phone: ${roleData.phone}</p>
+        <button class="todo-button delete js-delete-button" data-id="${roleData.id}" style='background-color:#F6AA1C' type="button">X</button>
         </div>
         </li>
         `;
@@ -21,6 +17,13 @@ function getRoleHtml(roleData) {
   // <input class="check-button" type="checkbox" ${roleData.complete ? 'checked': ''} data-id="${roleData.id}">
 
   return html;
+}
+
+function getPlayerHtml(playerData) {
+  const html = `
+  <li>Name: ${playerData.name}, Role: ${playerData.role}<button style='background-color:#F6AA1C' onclick='addPlayerToTeam(${playerData.id})'>+add me!</button></li>
+  `
+  return html
 }
 
 function getTeamHtml(teamData) {
@@ -32,8 +35,11 @@ function getTeamHtml(teamData) {
         data-target='#teamData-${teamData.id}' aria-expanded='false' aria-controls='teamData'>show teammembers</button>
     <div class='collapse' id='teamData-${teamData.id}'>
         <div class='card card-body bac'>
-            <p>Player1</p>
-            <button id=‘add-player-to-${teamData.id}’ style='background-color: #F6AA1C'; class=“btn”>+ add player</button>
+        <ul id="playerSearchResults-${teamData.id}"></ul>
+        <label for="playerName-${teamData.id}">Add Player:</label>
+        <input style="color: black" type="text" id="playerName-${teamData.id}" name="playerName-${teamData.id}"><br>
+        <button style="background-color: #F6AA1C" onclick="searchPlayers(${teamData.id})">Search!</button>
+            
         </div>
     </div>
         `;
@@ -43,28 +49,22 @@ function getTeamHtml(teamData) {
   return html;
 }
 
-// function checkRole(id) {
+function searchPlayers(teamId) {
+  const player = document.getElementById(`playerName-${teamId}`).value
+  const uriPlayer = encodeURIComponent(player)
+  axios.get(`/players?playerName=${uriPlayer}`).then((response) => {
+      const htmlArray = response.data.map((playerItem) => {
+        return getPlayerHtml(playerItem);
+      });
+      const htmlString = htmlArray.join('');
+      const players = document.querySelector(`#playerSearchResults-${teamId}`)
+      players.innerHTML = htmlString
+    })
+    .catch((error) => {
+      console.log(error);
+    });
+}
 
-
-//   axios
-//     .patch(`/api/roles/${id}/check`)
-
-//     .then((response) => {
-
-//       renderRoles()
-//     })
-
-//     .catch((error) => {
-
-//       const errorText = error.response.data.error || error;
-
-//       alert('could not update role:' + errorText);
-//     });
-// }
-
-/**
- * Get the role Data from the API and export. Displays an alert if there is an error.
- */
 function renderRoles() {
   axios
     .get('/roles')

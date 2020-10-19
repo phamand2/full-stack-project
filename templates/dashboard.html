@@ -12,37 +12,36 @@
 </head>
 
 <style type="text/css">
-#titlediv {
-    background-color: #941b0c;
-    justify-content: center;
-    outline-style: groove;
-    outline-color: #A82a0a;
-    text-align: center;
-    font-family: 'Impact';
-}
-
+    #titlediv {
+        background-color: #941b0c;
+        justify-content: center;
+        outline-style: groove;
+        outline-color: #A82a0a;
+        text-align: center;
+        font-family: 'Impact';
+    }
 </style>
 
 <body style="background-color: #BC3908; color: white;">
 
     <main role="main" class="container" style="background-color: #BC3908;">
-        
+
         <div id="titlediv">
-        <h1>Hello, ${user.name}!</h1>
+            <h1>Hello, ${user.name}!</h1>
         </div>
 
         <h2 id="roles">
             Your roles:
         </h2>
-        <button class="btn" style="background-color: #F6AA1C;" type="button"
-            data-toggle="collapse" data-target="#newRole" aria-expanded="false" aria-controls="newRole">
+        <button class="btn" style="background-color: #F6AA1C;" type="button" data-toggle="collapse"
+            data-target="#newRole" aria-expanded="false" aria-controls="newRole">
             +add new role
         </button>
-        
+
         <ul id="roles-go-here" class="roles-go-here">
             <li>filler</li>
         </ul>
-        
+
         <form action="/role" method="POST">
 
             <div class="collapse" id="newRole">
@@ -69,10 +68,14 @@
             +create new team
         </button>
         <div class="collapse" id="teamData">
-            <div class="card card-body bac">
+            <!-- <div class="card card-body bac">
                 <p>Player One</p>
-                <button id='add-player-to-' style="background-color: #F6AA1C;" class="btn">+ add player</button>
-            </div>
+                <button id='add-player-to-' style="background-color: #F6AA1C;" class="btn" type="submit">+ add
+                    player</button>
+                <label for="teamName">Team Name:</label>
+                <input style="color: black" type="text" id="teamName" name="teamName"><br>
+                <input style="background-color: #F6AA1C" type="submit" value="Submit">
+            </div> -->
         </div>
         </div>
 
