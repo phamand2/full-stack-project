@@ -12,14 +12,27 @@ const {
 //forwardAuthenticated == not logged in
 //ensureAuthenticated == logged in 
 
-router.get('/sitemap', siteMapAuthenticated, (req, res) => {
+router.get('/', siteMapAuthenticated, (req, res) => {
     res.render('sitemap-loggedin', {
+        locals: {
+            title: 'sitemap',
+            user:req.user,
+        },
         partials: {
             head: '/partials/head',
             foot: '/partials/foot'
         }
     }) 
 })
-router.get('/sitemap',siteMapNonAuthenticated, (req, res) => {
-    res.render('sitemap-loggedout')
+router.get('/public',siteMapNonAuthenticated, (req, res) => {
+    res.render('sitemap-loggedout', {
+        locals: {
+            title: 'sitemap',
+        },
+        partials: {
+            head: '/partials/head',
+            foot: '/partials/foot'
+        }
+    }) 
 })
+module.exports = router;
