@@ -34,6 +34,7 @@
       <div class="col-md-6 m-auto">
         <div class="card card-body" id="loginbox">
           <h1 class="text-center mb-3" style="color: white; font-family: Impact;"><i class="fas fa-sign-in-alt"></i>  Login</h1>
+          <span>${error ? error: ''}</span>
           <form action="/users/login" method="POST">
             <div class="form-group">
               <label for="email">Email</label>

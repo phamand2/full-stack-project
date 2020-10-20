@@ -10,9 +10,10 @@ const {
 
 // Login Page
 router.get('/login', forwardAuthenticated, (req, res) => res.render('login', { 
-  messages: req.flash('error'),
   locals: {
+    ...res.locals,
     title: 'Login',
+
   },
   partials: {
     head: '/partials/head',
@@ -89,13 +90,13 @@ router.post('/register', (req, res) => {
 
 
 // Login
-router.post('/login', (req, res, next) => {
+router.post('/login', 
   passport.authenticate('local', {
     successRedirect: '/dashboard',
     failureRedirect: '/users/login',
     failureFlash: true
-  })(req, res, next);
-});
+  })
+);
 
 // Logout
 router.get('/logout', (req, res) => {
