@@ -33,10 +33,18 @@ function getPlayerHtml(playerData, teamId) {
   return html
 }
 
-function getPlayerForTeamsHtml(playerData) {
-  const html = `<li>Name: ${playerData.name}, Role: ${playerData.role}</li>`
+function getPlayerForTeamsHtml(playerData, teamId) {
+  const html = `<li>Name: ${playerData.name}, Role: ${playerData.role}</li><button style='background-color:#F6AA1C' onclick='removePlayerFromTeam(${playerData.id}, ${teamId})'>remove player!</button></li>`
   return html
 }
+
+function removePlayerFromTeam(playerId, teamId) {
+  axios.delete(`/teamplayers?playerId=${playerId}&teamId=${teamId}`).then(renderPlayers())
+    .catch((error) => {
+      console.log(error);
+    })
+}
+
 
 function getTeamHtml(teamData) {
   const html = `
@@ -89,7 +97,7 @@ function renderPlayers() {
   document.querySelectorAll(".playerList").forEach(element => {
     axios.get(`/team/${element.getAttribute("data-id")}/players`).then((response) => {
         const htmlArray = response.data.map((playerItem) => {
-          return getPlayerForTeamsHtml(playerItem);
+          return getPlayerForTeamsHtml(playerItem, element.getAttribute("data-id"));
         });
         const htmlString = htmlArray.join('');
         // lol this looks straight stupid. the idea is that the weird value below is a number which represents an id tag. Let's see if it works
@@ -104,7 +112,9 @@ function renderPlayers() {
 }
 
 function addPlayerToTeam(playerId, teamId) {
-  axios.post(`/teamplayers?playerId=${playerId}&teamId=${teamId}`)
+  axios.post(`/teamplayers?playerId=${playerId}&teamId=${teamId}`).then(() => {
+      renderPlayers()
+    })
     .catch((error) => {
       console.log(error);
     })

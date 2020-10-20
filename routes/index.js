@@ -118,7 +118,7 @@ router.post('/teamplayers', (req, res) => {
       })
     }).then((newPlayer) => {
       console.log("I'm here!")
-      res.redirect('back')
+      res.redirect('/dashboard')
     })
     .catch((error) => {
       console.error(error)
@@ -127,6 +127,24 @@ router.post('/teamplayers', (req, res) => {
       })
     })
 })
+
+router.delete('/teamplayers', (req, res) => {
+  db.Team.findByPk(req.query.teamId).then((team) => {
+      db.Player.findByPk(req.query.playerId).then((player) => {
+        team.removePlayer(player)
+      })
+    }).then((newPlayer) => {
+      console.log("I'm here!")
+      res.json()
+    })
+    .catch((error) => {
+      console.error(error)
+      res.status(500).json({
+        error
+      })
+    })
+})
+
 
 router.get('/players', (req, res) => {
   console.log(req.query.playerName)
