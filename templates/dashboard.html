@@ -11,6 +11,8 @@
 </head>
 
 <style type="text/css">
+    label{color:black}
+    
     h2{
         font-family: 'Impact' !important;
         color: black;
@@ -30,7 +32,7 @@
     .playerdiv {
         background-color: #D97212 !important;
         outline: 2px dashed #621708 !important;
-        max-width: 350px !important;
+        /* max-width: 350px !important; */
         display: flex; 
         flex-flow: row nowrap;
         justify-content: space-between;
@@ -75,35 +77,35 @@
             Your roles:
         </h2>
 
+        <br>
+        
+        <ul id="roles-go-here" class="roles-go-here" style='list-style: none'>
+            <li>No Roles Yet</li>
+        </ul>
         <button class="btn" style="background-color: #F6AA1C;" type="button" data-toggle="collapse"
             data-target="#newRole" aria-expanded="false" aria-controls="newRole">
             +add new role
         </button>
-        <br>
-
-        <ul id="roles-go-here" class="roles-go-here">
-            <li>filler</li>
-        </ul>
-
+        
         <form action="/role" method="POST">
 
-            <div class="collapse" id="newRole">
+            <div class="collapse form-group" id="newRole">
                 <div class="card card-body bac">
                     <label for="role">Role:</label>
-                    <input style="color: black" type="text" id="role" name="role"><br>
+                    <input class='form-control' style="color: black" type="text" id="role" name="role"><br>
                     <label for="name">Your name:</label>
-                    <input style="color: black" type="text" id="name" name="name"><br>
+                    <input class='form-control' style="color: black" type="text" id="name" name="name"><br>
                     <label for="email">Your email:</label>
-                    <input style="color: black" type="email" id="email" name="email"><br>
+                    <input class='form-control' style="color: black" type="email" id="email" name="email"><br>
                     <label for="phone">Your phone number:</label>
-                    <input style="color: black" type="tel" id="phone" name="phone"><br>
-                    <input style="background-color: #F6AA1C" type="submit" value="Submit">
+                    <input class='form-control' style="color: black" type="tel" id="phone" name="phone"><br>
+                    <input class='btn btn-primary btn-block' style="background-color: #F6AA1C" type="submit" value="Submit">
                 </div>
             </div>
 
         </form>
         <h2 id="teams">Your teams:</h2>
-        <ul id="teams-go-here" class="teams-go-here">
+        <ul id="teams-go-here" class="teams-go-here" style='list-style: none'>
 
         </ul>
         <button class="btn" style="background-color: #F6AA1C;" type="button" data-toggle="collapse"
