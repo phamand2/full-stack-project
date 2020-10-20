@@ -34,7 +34,7 @@ function getPlayerHtml(playerData, teamId) {
 }
 
 function getPlayerForTeamsHtml(playerData, teamId) {
-  const html = `<li>Name: ${playerData.name}, Role: ${playerData.role}</li><button style='background-color:#F6AA1C' onclick='removePlayerFromTeam(${playerData.id}, ${teamId})'>remove player!</button></li>`
+  const html = `<li style='font-size:18px'>Name: ${playerData.name}, Role: ${playerData.role}<button style='background-color:#F6AA1C; margin-left:4px' onclick='removePlayerFromTeam(${playerData.id}, ${teamId})'>remove player!</button></li>`
   return html
 }
 
