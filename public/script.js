@@ -6,11 +6,18 @@
  */
 function getRoleHtml(roleData) {
   const html = `
-      <li class="role-item js-role-item d-flex justify-content-center" data-id="${roleData.id}">
-        <div class="role-form d-flex justify-content-center">
-        <p>Role: ${roleData.role}, Name: ${roleData.name}, Email: ${roleData.email}, Phone: ${roleData.phone}</p>
-        <button class="todo-button delete js-delete-button" data-id="${roleData.id}" style='background-color:#F6AA1C' type="button">X</button>
+
+        <li class="role-item js-role-item d-flex justify-content-center" data-id="${roleData.id}">
+        <div class="role-form d-flex playerdiv">
+
+        <p>Role: ${roleData.role} <br> 
+        Name: ${roleData.name}<br>
+        Email: ${roleData.email}<br> 
+        Phone: ${roleData.phone}</p>
+        
+        <button class="todo-button delete js-delete-button" data-id="${roleData.id}" style='background-color:#F6AA1C' type="button">Drop This Player</button>
         </div>
+        <br>
         </li>
         `;
   // <button class="role-button delete js-delete-button" data-id="${roleData.id}" type="button">X</button>
@@ -33,22 +40,28 @@ function getPlayerForTeamsHtml(playerData) {
 
 function getTeamHtml(teamData) {
   const html = `
-      <li class='team-item js-team-item' data-id='${teamData.id}'>
-        <div class='role-form'>
+        <li class='team-item js-team-item' data-id='${teamData.id}'>
+        <div class='role-form teams'>
       
         <h3>${teamData.teamName}</h3>
         <button class='btn' style='background-color:#F6AA1C'; type='button' data-toggle='collapse'
         data-target='#teamData-${teamData.id}' aria-expanded='false' aria-controls='teamData'>show teammembers</button>
-    <div class='collapse' id='teamData-${teamData.id}'>
+        
+        <div class='collapse' id='teamData-${teamData.id}'>
+
         <div class='card card-body bac'>
+        
         <ul class="playerList" id="playerList-${teamData.id}" data-id="${teamData.id}">No players yet!</ul>
+        
         <ul id="playerSearchResults-${teamData.id}" data-id="${teamData.id}"></ul>
+        
         <label for="playerName-${teamData.id}">Add Player:</label>
         <input style="color: black" type="text" id="playerName-${teamData.id}" name="playerName-${teamData.id}"><br>
+        
         <button style="background-color: #F6AA1C" onclick="searchPlayers(${teamData.id})">Search!</button>
             
         </div>
-    </div>
+        </div>
         `;
   // <button class='role-button delete js-delete-button' data-id="${roleData.id}" type="button">X</button>
   // <input class="check-button" type="checkbox" ${roleData.complete ? 'checked': ''} data-id="${roleData.id}">
@@ -79,7 +92,7 @@ function renderPlayers() {
           return getPlayerForTeamsHtml(playerItem);
         });
         const htmlString = htmlArray.join('');
-        // lol this looks straight stupid. the idea is that the weird value below is a number which represents an id tag. Let's see if it works!
+        // lol this looks straight stupid. the idea is that the weird value below is a number which represents an id tag. Let's see if it works
         const players = document.querySelector(`#playerList-${element.getAttribute("data-id")}`);
         players.innerHTML = htmlString;
 
@@ -129,36 +142,7 @@ function renderTeams() {
       console.log(error);
     });
 }
-// /**
-//  * Add a role via the API and then adds it to the page. Displays an alert if there is an error in the request.
-//  * @param {string} text The name of the role that you wish to create
-//  */
-// function addrole(text) {
-//   axios
-//     .post('/roles', {
-//       role: text,
-//     })
 
-//     .then((response) => {
-
-//       const htmlString = getRoleHtml(response.data);
-
-//       const roles = document.querySelector('#roles');
-
-//       roles.innerHTML += htmlString;
-//     })
-//     .catch((error) => {
-
-//       const errorText = error.response.data.error || error;
-
-//       alert('could not add role:' + errorText);
-//     });
-// }
-
-// /**
-//  * Delete a role with the given ID and update the roles on the page. Displays an alert if there is an error in the request.
-//  * @param {integer} id the id of the role item that should be deleted
-//  */
 function deleterole(id) {
   axios
     .delete(`/roles/${id}`)
@@ -173,44 +157,12 @@ function deleterole(id) {
     });
 }
 
-// /**
-//  * Update the role with the given ID. Text will be updated based on the input matching the id. Displays an alert if there is an error in the request.
-//  * @param {integer} id The ID of the role to be updated.
-//  */
-// function updaterole(id) {
-//   const roleField = document.querySelector(`.js-role-item-${id}`);
-//   axios
-//     .put(`/roles/${id}`, {
-//       name: roleField.value,
-//     })
-//     .then((response) => {
-//       roleField.value = response.data.name;
-//     })
-//     .catch((error) => {
-//       const errorText = error.response.data.error || error;
-//       alert('could not update role:' + errorText);
-//     });
-// }
-
-// /* Start Execution */
-
-// const addForm = document.querySelector('.js-add-form');
-// addForm.addEventListener('submit', (e) => {
-//   e.preventDefault();
-//   const text = document.querySelector('.js-input').value;
-//   addRole(text);
-//   addForm.reset();
-// });
 document.addEventListener('click', (e) => {
   if (e.target.classList.contains('js-delete-button')) {
     const id = e.target.dataset.id;
     deleterole(id);
   }
 
-  //   if (e.target.classList.contains('check-button')) {
-  //     const id = e.target.dataset.id;
-  //     checkRole(id);
-  //   }
 });
 renderRoles();
 renderTeams();
