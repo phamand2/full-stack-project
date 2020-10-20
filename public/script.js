@@ -114,6 +114,8 @@ function renderPlayers() {
 function addPlayerToTeam(playerId, teamId) {
   axios.post(`/teamplayers?playerId=${playerId}&teamId=${teamId}`).then(() => {
       renderPlayers()
+      document.getElementById(`playerSearchResults-${teamId}`).innerHTML = '';
+      document.getElementById(`playerName-${teamId}`).value = '';
     })
     .catch((error) => {
       console.log(error);
