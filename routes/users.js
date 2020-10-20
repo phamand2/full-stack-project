@@ -9,9 +9,10 @@ const {
 } = require('../config/auth');
 
 // Login Page
-router.get('/login', forwardAuthenticated, (req, res) => res.render('login', {
+router.get('/login', forwardAuthenticated, (req, res) => res.render('login', { 
+  messages: req.flash('error'),
   locals: {
-    title: 'Login'
+    title: 'Login',
   },
   partials: {
     head: '/partials/head',
@@ -44,6 +45,10 @@ router.post('/register', (req, res) => {
     res.render('register', {
       locals: {
         // error: 'Please submit all required fields'
+      },
+      partials: {
+        head: '/partials/head',
+        foot: '/partials/foot',
       }
     })
   }
