@@ -209,4 +209,26 @@ router.delete('/roles/:id', (req, res) => {
     })
 });
 
+router.delete('/teams:id', (req, res) => {
+  const { id } = req.params;
+  db.Team.destroy({
+    where: {
+      TeamId: req.params.id
+    }
+  })
+  .then((deletedTeam) => {
+    if(deletedTeam === 0){
+      res.status(404).json({
+        error: `Could not find Team with id: ${id}`
+      })
+    }
+    res.status(204).json();
+  })
+  .catch((error) => {
+    console.error(error)
+    res.status(500).json({error: `A database error occured`})
+  })
+})
+
+
 module.exports = router;

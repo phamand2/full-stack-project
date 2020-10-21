@@ -52,6 +52,7 @@ function getTeamHtml(teamData) {
         <div class='role-form teams'>
       
         <h3>${teamData.teamName}</h3>
+        <button class='btn' onclick="deleteteam(${id})>Delete This Team</button>
         <button class='btn' style='background-color:#F6AA1C'; type='button' data-toggle='collapse'
         data-target='#teamData-${teamData.id}' aria-expanded='false' aria-controls='teamData'>show teammembers</button>
         
@@ -165,8 +166,19 @@ function deleterole(id) {
 
       const errorText = error.response.data.error || error;
 
-      alert('could not add role:' + errorText);
+      alert('could not delete role:' + errorText);
     });
+}
+
+function deleteteam(id) {
+  axios.delete(`/teams/${id}`)
+  .then((resizedteamlist) => {
+    renderTeams();
+  })
+  .catch((error)=>{
+    const errorText = error.response.data.error || error;
+    alert('could not delete team:' + errorText);
+  });
 }
 
 document.addEventListener('click', (e) => {
