@@ -48,7 +48,7 @@ function removePlayerFromTeam(playerId, teamId) {
 
 function getTeamHtml(teamData) {
   const html = `
-        <li class='team-item js-team-item' data-id='${teamData.id}'>
+        <li class='team-item js-team-item'  data-id='${teamData.id}'>
         <div class='role-form teams'>
       
         <h3>${teamData.teamName}</h3>
@@ -60,7 +60,7 @@ function getTeamHtml(teamData) {
 
         <div class='card card-body bac'>
         
-        <ul class="playerList" id="playerList-${teamData.id}" data-id="${teamData.id}">No players yet!</ul>
+        <ul class="playerList" style="list-style:none" id="playerList-${teamData.id}" data-id="${teamData.id}">No players yet!</ul>
         
         <ul id="playerSearchResults-${teamData.id}" data-id="${teamData.id}"></ul>
         
