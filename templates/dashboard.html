@@ -11,9 +11,14 @@
 </head>
 
 <style type="text/css">
+    label {
+        color: black
+    }
+
     h2 {
         font-family: 'Impact' !important;
         color: black;
+        margin-left: 50px;
     }
 
     #titlediv {
@@ -33,7 +38,7 @@
     .playerdiv {
         background-color: #D97212 !important;
         outline: 2px dashed #621708 !important;
-        max-width: 350px !important;
+        /* max-width: 350px !important; */
         display: flex;
         flex-flow: row nowrap;
         justify-content: space-between;
@@ -47,6 +52,10 @@
         font-family: 'Impact' !important;
         background-image: linear-gradient(#941B0C, #BC3908 50%, #D97212) !important;
 
+    }
+
+    ul {
+        margin-right: 50px
     }
 
     .btn:hover {
@@ -81,50 +90,43 @@
             Your roles:
         </h2>
 
-        <button class="btn" style="background-color: #F6AA1C;" type="button" data-toggle="collapse"
-            data-target="#newRole" aria-expanded="false" aria-controls="newRole">
-            +add new role
-        </button>
         <br>
 
-        <ul id="roles-go-here" class="roles-go-here">
-            <li>filler</li>
+        <ul id="roles-go-here" class="roles-go-here" style='list-style: none'>
+            <li>No Roles Yet</li>
         </ul>
+        <button style="margin-left: 50px;" class="btn" style="background-color: #F6AA1C;" type="button"
+            data-toggle="collapse" data-target="#newRole" aria-expanded="false" aria-controls="newRole">
+            +add new role
+        </button>
 
         <form action="/role" method="POST">
 
-            <div class="collapse" id="newRole">
+            <div class="collapse form-group" id="newRole">
                 <div class="card card-body bac">
                     <label for="role">Role:</label>
-                    <input style="color: black" type="text" id="role" name="role"><br>
+                    <input class='form-control' style="color: black" type="text" id="role" name="role"><br>
                     <label for="name">Your name:</label>
-                    <input style="color: black" type="text" id="name" name="name"><br>
+                    <input class='form-control' style="color: black" type="text" id="name" name="name"><br>
                     <label for="email">Your email:</label>
-                    <input style="color: black" type="email" id="email" name="email"><br>
+                    <input class='form-control' style="color: black" type="email" id="email" name="email"><br>
                     <label for="phone">Your phone number:</label>
-                    <input style="color: black" type="tel" id="phone" name="phone"><br>
-                    <input style="background-color: #F6AA1C" type="submit" value="Submit">
+                    <input class='form-control' style="color: black" type="tel" id="phone" name="phone"><br>
+                    <input class='btn btn-primary btn-block' style="background-color: #F6AA1C" type="submit"
+                        value="Submit">
                 </div>
             </div>
 
         </form>
         <h2 id="teams">Your teams:</h2>
-        <ul id="teams-go-here" class="teams-go-here">
+        <ul id="teams-go-here" class="teams-go-here" style='list-style: none'>
 
         </ul>
-        <button class="btn" style="background-color: #F6AA1C;" type="button" data-toggle="collapse"
-            data-targearoundt="#newTeam" aria-expanded="false" aria-controls="newTeam">
+        <button class="btn" style="background-color: #F6AA1C; margin-left: 50px;" type="button" data-toggle="collapse"
+            data-target="#newTeam" aria-expanded="false" aria-controls="newTeam">
             +create new team
         </button>
         <div class="collapse" id="teamData">
-            <!-- <div class="card card-body bac">
-                <p>Player One</p>
-                <button id='add-player-to-' style="background-color: #F6AA1C;" class="btn" type="submit">+ add
-                    player</button>
-                <label for="teamName">Team Name:</label>
-                <input style="color: black" type="text" id="teamName" name="teamName"><br>
-                <input style="background-color: #F6AA1C" type="submit" value="Submit">
-            </div> -->
         </div>
         </div>
 
@@ -138,7 +140,7 @@
                 </div>
             </div>
 
-            <a href="/users/logout" class="btn btn-secondary">Logout</a>
+            <a href="/users/logout" style="margin-left: 50px;" class="btn btn-secondary">Logout</a>
     </main>
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
     <script src="../script.js"></script>
